@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.TempActivity"></activity>
+        <activity android:name=".activities.TempActivity1"></activity>
         <activity android:name=".activities.ScreenSaverActivity" />
         <activity android:name=".activities.TempActivity2" />
 

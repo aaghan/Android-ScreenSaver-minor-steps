@@ -10,7 +10,7 @@ import android.view.View;
 import missingdrop.stb_screensaver.MyApplication;
 import missingdrop.stb_screensaver.R;
 
-public class TempActivity extends AppCompatActivity {
+public class TempActivity1 extends AppCompatActivity {
     public MyApplication getApp(){
         return (MyApplication)this.getApplication();
     }
