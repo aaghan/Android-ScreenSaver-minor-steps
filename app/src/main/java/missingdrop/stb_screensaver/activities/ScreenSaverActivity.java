@@ -87,6 +87,9 @@ public class ScreenSaverActivity extends Activity {
 
     }
 
+    /**
+     * kills backgeound process from pid as well packageName
+     */
     private void killBackgroundApps() {
         ActivityManager am = (ActivityManager) this.getSystemService(Context.ACTIVITY_SERVICE);
         List<RunningAppProcessInfo> tasks = am.getRunningAppProcesses();
