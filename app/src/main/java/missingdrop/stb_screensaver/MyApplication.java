@@ -6,8 +6,9 @@ import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,10 +66,10 @@ public class MyApplication extends Application {
      */
     public void active() {
         waiter.active();
+        setScreenSaverStarted(false);
     }
 
     /**
-     *
      * @return the flag that recognizes if app is on top of any other application
      */
     private boolean currentAppInForeground() {
@@ -121,6 +122,7 @@ public class MyApplication extends Application {
         public void run() {
             long idle = 0;
             this.active();
+            Looper.prepare();
             while (!stop) {
                 try {
                     Thread.sleep(8 * 1000); //checks to show screensaver after every 8 seconds
@@ -140,8 +142,13 @@ public class MyApplication extends Application {
                      */
 
                     if (currentAppInForeground() && !getScreenSaverStarted() && !getVideoPlaying()) {
+                        Toast.makeText(MyApplication.this, "start screen saver", Toast.LENGTH_LONG).show();
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         startScreenSaver();
-                        setScreenSaverStarted(true);
                         onTrimMemory(TRIM_MEMORY_BACKGROUND);
                         Log.d(TAG, "Screen saver started");
                     }
